@@ -32,18 +32,17 @@ enum custom_keycodes {
   RAISE,
   MEDIA,
   BACKLIT,
-  RGBRST,
-  MSLU,
-  MSRU,
-  MSLD,
-  MSRD
+  RGBRST
+};
+
+enum macro_keycodes {
+  KC_SAMPLEMACRO,
 };
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
 #define KC_LOWER LOWER
 #define KC_RAISE RAISE
-#define KC_MEDIA TG(_MEDIA)
 #define KC_RST   RESET
 #define KC_LRST  RGBRST
 #define KC_LTOG  RGB_TOG
@@ -66,61 +65,56 @@ enum custom_keycodes {
 #define KC_MNEXT KC_MEDIA_NEXT_TRACK
 #define KC_MPREV KC_MEDIA_PREV_TRACK
 #define KC_MPLPP KC_MEDIA_PLAY_PAUSE
+#define KC_ESCME LT(_MEDIA, KC_ESC)
 #define KC_BRIUP KC_BRIGHTNESS_UP
 #define KC_BRIDN KC_BRIGHTNESS_DOWN 
-#define KC_LBGUI MT(MOD_LGUI, KC_LBRC)
-#define KC_RBGUI MT(MOD_RGUI, KC_RBRC)
-#define KC_MSLU  MSLU
-#define KC_MSRU  MSRU
-#define KC_MSLD  MSLD
-#define KC_MSRD  MSRD
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      GESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
+      ESCME,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       CTLTB,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN, CTLEN,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LBGUI,  LSPA,  LALT,     RALT,  RSPA, RBGUI \
+                                   LGUI,  LSPA,  LALT,     RALT,  RSPA,  RGUI \
                               //`--------------------'  `--------------------'
   ),
 
   [_LOWER] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      _____, GRAVE,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR, MINUS, _____,   DEL,\
+      _____,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR, MINUS, _____,   DEL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       _____,  HOME,  PGDN,  PGUP,   END, XXXXX,                   LEFT,  DOWN,    UP, RIGHT,  QUOT,   EQL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS,  PLUS,  LBRC,  RBRC,  BSLS, _____,\
+      _____, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS,  PLUS,  LBRC,  RBRC,  BSLS,  RBRC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,    _____, MEDIA, _____ \
+                                  _____, _____, _____,    _____, _____, _____ \
                               //`--------------------'  `--------------------'
   ),
 
   [_RAISE] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      _____,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10, _____,\
+        GRV,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       _____,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____,   F11,   F12,   F13,   F14,   F15,                   _____,  _____,  _____, _____,  _____, _____,\
+      LBRC,   F11,   F12,   F13,   F14,   F15,                   _____,  _____,  _____, _____,  _____, _____,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, MEDIA, _____,    _____, _____, _____ \
+                                  _____, _____, _____,    _____, _____, _____ \
                               //`--------------------'  `--------------------'
   ),
   
   [_MEDIA] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      _____, XXXXX, XXXXX,  ACL0,  ACL1,  ACL2,                  MSLU ,  MS_U,  MSRU,  WH_U, XXXXX,  BTN2,\
+      _____, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LTOG, XXXXX, BRIDN, BRIUP,  LVAI, XXXXX,                   MS_L,  BTN1,  MS_R,  BTN2, XXXXX,  BTN1,\
+       LTOG, XXXXX, BRIDN, BRIUP,  LVAI, XXXXX,                  MPREV, VDOWN,   VUP, MNEXT, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                   MSLD,  MS_D,  MSRD,  WH_D, MNEXT,  BTN3,\
+       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, AMUTE, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, MEDIA, MPLPP,    MPLPP, MEDIA, _____\
+                                  _____, MPLPP, MPLPP,    MPLPP, MPLPP, _____\
                               //`--------------------'  `--------------------'
   )
 };
@@ -237,7 +231,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MEDIA:
         if (record->event.pressed) {
           layer_on(_MEDIA);
-        } else {
+	} else {
           layer_off(_MEDIA);
         }
         return false;
@@ -261,43 +255,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       break;
-    case MSLU:
-        if (record->event.pressed) {
-          register_code(KC_MS_L);
-          register_code(KC_MS_U);
-        } else {
-          unregister_code(KC_MS_L);
-          unregister_code(KC_MS_U);
-        }
-        break;
-    case MSRU:
-        if (record->event.pressed) {
-          register_code(KC_MS_R);
-          register_code(KC_MS_U);
-        } else {
-          unregister_code(KC_MS_R);
-          unregister_code(KC_MS_U);
-        }
-        break;
-    case MSLD:
-        if (record->event.pressed) {
-          register_code(KC_MS_L);
-          register_code(KC_MS_D);
-        } else {
-          unregister_code(KC_MS_L);
-          unregister_code(KC_MS_D);
-        }
-        break;
-    case MSRD:
-        if (record->event.pressed) {
-          register_code(KC_MS_R);
-          register_code(KC_MS_D);
-        } else {
-          unregister_code(KC_MS_R);
-          unregister_code(KC_MS_D);
-        }
-        break;
   }
   return true;
 }
-
