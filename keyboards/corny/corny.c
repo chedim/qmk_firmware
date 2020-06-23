@@ -16,6 +16,9 @@
 #include "corny.h"
 #include "raw_hid.h"
 #include "hid_api.h"
+#include "matrix.h"
+#include "keymap.h"  // to get keymaps[][][]
+#include "dynamic_keymap.h"
 
 // Optional override functions below.
 // You can leave any or all of these undefined.
@@ -27,6 +30,8 @@ layer_state_t layer_state_set_kb(layer_state_t newState) {
   state = newState;
   return newState;
 }
+
+extern const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS];
 
 
 #ifdef RAW_ENABLE
@@ -45,7 +50,32 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
                                args[1] = (state >> 16) & 0xFF;
                                args[2] = (state >> 8) & 0xFF;
                                args[3] = state & 0xFF;
+                               break;
                              }
+    case id_get_matrix_state: {
+                                args[0] = matrix_rows();
+                                args[1] = matrix_cols();
+                                uint8_t colbytes = 1 + args[2] / 8;
+                                for (uint8_t row = 0; row < args[0]; row++) {
+                                  matrix_row_t cols = matrix_get_row(row);
+                                  for (int16_t colbyte = colbytes; colbyte > -1; colbyte--) {
+                                    args[2 + row * colbytes + colbyte] = (cols >> (colbyte * 8)) & 0xFF;
+                                  }
+                                }
+                                break;
+                              }
+    case id_get_mapping: {
+                          #ifdef DYNAMIC_KEYMAP_ENABLE
+                           uint16_t mapping = dynamic_keymap_get_keycode(args[0], args[1], args[2]);
+                          #else
+                           uint16_t mapping = keymap_key_to_keycode(args[0], 
+                               (keypos_t){.row = args[1], .col = args[2]});
+                          #endif
+
+                           args[0] = (mapping >> 8) & 0xFF;
+                           args[1] = mapping & 0xFF;
+                           break;
+                         }
   }
 
   raw_hid_send(data, length);

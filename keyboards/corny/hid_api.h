@@ -3,5 +3,7 @@
 
 enum api_command_id {
   id_get_protocol_version = 0x01,
-  id_get_layer_state
+  id_get_layer_state,
+  id_get_matrix_state,
+  id_get_mapping
 };
