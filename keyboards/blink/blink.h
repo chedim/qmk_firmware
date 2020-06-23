@@ -1,4 +1,4 @@
-/* Copyright 2019 Dima Chechetkin
+/* Copyright 2020 chedim
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,11 +13,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #pragma once
 
 #include "quantum.h"
 
-/* This a shortcut to help you visually see your layout.
+/* This is a shortcut to help you visually see your layout.
  *
  * The first section contains all of the arguments representing the physical
  * layout of the board and position of the keys.
@@ -25,13 +26,5 @@
  * The second converts the arguments into a two-dimensional array which
  * represents the switch matrix.
  */
-#define LAYOUT( \
-    k00, k01, k02, k03, k04, k05, k06, k07, k08, k09, k10, k11, \
-    k12, k13, k14, k15, k16, k17, k18, k19, k20, k21, k22, k23, \
-    k24, k25, k26, k27, k28, k29, k30, k31, k32, k33, k34, k35 \
-) \
-{ \
-  { k00, k01, k02, k03, k04, k05, k06, k07, k08, k09, k10, k11 }, \
-  { k12, k13, k14, k15, k16, k17, k18, k19, k20, k21, k22, k23 }, \
-  { k24, k25, k26, k27, k28, k29, k30, k31, k32, k33, k34, k35 }, \
-}
+#define LAYOUT(k00, k01, k02, k03, k04, k05, k06, k07, k08, k09, k10, k11, k12, k13, k14, k15, k16, k17, k18, k19, k20, k21, k22, k23, k24, k25, k26, k27, k28, k29, k30, k31, k32, k33, k34, k35) \
+    { {k00, k01, k02, k03, k04, k05, k06, k07, k08, k09, k10, k11}, {k12, k13, k14, k15, k16, k17, k18, k19, k20, k21, k22, k23}, {k24, k25, k26, k27, k28, k29, k30, k31, k32, k33, k34, k35}, }

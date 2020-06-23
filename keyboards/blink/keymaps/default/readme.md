@@ -1,1 +1,1 @@
-# The default keymap for corny
+# The default keymap for Blink
