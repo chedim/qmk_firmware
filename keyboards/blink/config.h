@@ -41,8 +41,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *                  ROW2COL = ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
 */
-#define DIRECT_PINS { { B2, B5, D0, D3, D6, C7 }, { B1, B4, B7, D2, D5, C6 }, { B0, B3, B6, D1, D4, C5 } }
+#define DIRECT_PINS { \
+    { B2, B5, D0, D3, D6, C7 },\
+    { B1, B4, B7, D2, D5, C6 },\
+    { B0, B3, B6, D1, D4, C5 }\
+}
 
+#define DIODE_DIRECTION COL2ROW
 
 /*
  * Split Keyboard specific options, make sure you have 'SPLIT_KEYBOARD = yes' in your rules.mk, and define SOFT_SERIAL_PIN.
