@@ -56,7 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE 10
+#define DEBOUNCE 20
 
 /* define if matrix has ghost (lacks anti-ghosting diodes) */
 //#define MATRIX_HAS_GHOST
@@ -111,5 +111,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* keyboard features */
 #define TAPPING_FORCE_HOLD_PER_KEY
-#define RETRO_TAPPING
 #define TAPPING_TERM 500
