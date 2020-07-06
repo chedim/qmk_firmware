@@ -73,7 +73,7 @@ enum custom_keycodes {
 #define MSLD  MSLD
 #define MSRD  MSRD
 
-
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT( \
   //.-----------------------------------------------------------.                ,-----------------------------------------------------------.
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------+---------+---------+---------+---------+---------|                |---------+---------+---------+---------+---------+---------|
         KC_TAB,  KC_HOME,  KC_PGDN,  KC_PGUP,   KC_END,    XXXXX,                   KC_LEFT,  KC_DOWN,    KC_UP, KC_RIGHT,  KC_QUOT,   KC_EQL,\
   //|---------+---------+---------+---------+---------+---------|                |---------+---------+---------+---------+---------+---------|
-       KC_LBRC,    XXXXX,    XXXXX,    XXXXX,    XXXXX,    XXXXX,                   KC_UNDS,  KC_PLUS,  KC_LBRC,  KC_RBRC,  KC_BSLS,  KC_RBRC
+       KC_LBRC,    XXXXX,    XXXXX,    XXXXX,    RESET,    _____,                   KC_UNDS,  KC_PLUS,  KC_LBRC,  KC_RBRC,  KC_BSLS,  KC_RBRC
   //.-----------------------------------------------------------.                ,-----------------------------------------------------------.
   ),
 
@@ -114,6 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------------.                ,-----------------------------------------------------------.
   )
 };
+// clang-format on
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
