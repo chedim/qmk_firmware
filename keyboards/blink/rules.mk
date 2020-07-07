@@ -32,3 +32,4 @@ FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
 HD44780_ENABLE = no         # Enable support for HD44780 based LCDs
 SPLIT_KEYBOARD = yes
 RAW_ENABLE = yes
+DEBOUNCE_TYPE = sym_pk

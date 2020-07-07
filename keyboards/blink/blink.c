@@ -19,18 +19,25 @@
 #include "hid_api.h"
 
 #ifdef RAW_ENABLE
+bool          initialized = false;
 layer_state_t state = 0;
 layer_state_t layer_state_set_kb(layer_state_t newState) {
     state = newState;
+    if (initialized) {
+        rawhid_sendlayer();
+    }
     return newState;
 }
 
 bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
-    if (record->event.pressed) {
-        rawhid_sendpress(&record->event.key.row, &record->event.key.col);
-    } else {
-        rawhid_sendrelease(&record->event.key.row, &record->event.key.col);
+    if (initialized) {
+        if (record->event.pressed) {
+            rawhid_sendpress(&record->event.key.row, &record->event.key.col);
+        } else {
+            rawhid_sendrelease(&record->event.key.row, &record->event.key.col);
+        }
     }
+
 
     return true;
 }
@@ -72,6 +79,7 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
         case id_get_protocol_version: {
             args[0] = API_VERSION >> 8;
             args[1] = API_VERSION & 0xFF;
+            initialized = true;
             break;
         }
         case id_get_layer_state: {
