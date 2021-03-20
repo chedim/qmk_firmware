@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_LOWER] = LAYOUT( \
   //,-----------------------------------------------------------.                ,-----------------------------------------------------------.
-       KC_GESC, KC_GRAVE,    KC_AT,  KC_HASH,   KC_DLR,  KC_PERC,                   KC_CIRC,  KC_AMPR,  KC_ASTR, KC_MINUS,    _____,   KC_DEL,\
+       KC_GESC, KC_GRAVE,    KC_AT,  KC_HASH,   KC_DLR,  KC_PERC,                   KC_CIRC,  KC_AMPR,  KC_ASTR, KC_MINUS,      RST,   KC_DEL,\
   //|---------+---------+---------+---------+---------+---------|                |---------+---------+---------+---------+---------+---------|
         KC_TAB,  KC_HOME,  KC_PGDN,  KC_PGUP,   KC_END,    XXXXX,                   KC_LEFT,  KC_DOWN,    KC_UP, KC_RIGHT,  KC_QUOT,   KC_EQL,\
   //|---------+---------+---------+---------+---------+---------|                |---------+---------+---------+---------+---------+---------|
