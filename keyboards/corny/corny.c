@@ -22,6 +22,7 @@
 // These are only required if you want to perform custom actions.
 
 layer_state_t state = 0;
+bool matrix_flip = false;
 
 layer_state_t layer_state_set_kb(layer_state_t newState) {
   state = newState;
@@ -65,16 +66,18 @@ void matrix_init_kb(void) {
 void matrix_scan_kb(void) {
   // put your looping keyboard code here
   // runs every cycle (a lot)
-
   matrix_scan_user();
 }
 
+*/
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-  // put your per-action keyboard code here
-  // runs for every action, just before processing by the firmware
-
+  if (matrix_flip) {
+  
+  }
   return process_record_user(keycode, record);
 }
+
+/*
 
 void led_set_kb(uint8_t usb_led) {
   // put your keyboard LED indicator (ex: Caps Lock LED) toggling code here
